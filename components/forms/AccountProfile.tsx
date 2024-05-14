@@ -30,6 +30,8 @@ import { Textarea } from "../ui/textarea";
 import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "@/lib/uploadthing";
 import {halls,departments} from '@/constants'
+import { updateUser } from "@/lib/actions/user.actions"
+import { usePathname,useRouter } from "next/navigation"
 
 interface Props{
     user:{
@@ -48,6 +50,9 @@ interface Props{
 const AccountProfile = ({user,btnTitle}:Props) => {
     const [files, setFiles] = useState<File[]>([]);
     const {startUpload} = useUploadThing("media");
+    const router=useRouter();
+    const pathname=usePathname();
+
 
     const form=useForm({
         resolver:zodResolver(UserValidation),
@@ -96,7 +101,23 @@ const AccountProfile = ({user,btnTitle}:Props) => {
             }
         }
 
-        //TODO: update user profile
+        await updateUser({
+            userId:user.id,
+            name:values.name,
+            username: values.username,
+            hall:values.hall,
+            department: values.department,
+            bio: values.bio,
+            image: values.profile_photo,
+            path: pathname,
+        })
+
+
+        if(pathname==='/profile/edit'){
+            router.back();
+        }else{
+            router.push('/');
+        }
     }
 
     return (
@@ -198,7 +219,7 @@ const AccountProfile = ({user,btnTitle}:Props) => {
                                 </FormControl>
                                 <SelectContent className="account-form_input">
                                     {halls.map((hall)=>(
-                                        <SelectItem value={hall.short} key={hall.short}>
+                                        <SelectItem value={hall.name} key={hall.short}>
                                             {hall.name}
                                         </SelectItem>
                                     ))}
@@ -224,7 +245,7 @@ const AccountProfile = ({user,btnTitle}:Props) => {
                                 </FormControl>
                                 <SelectContent className="account-form_input">
                                     {departments.map((department)=>(
-                                        <SelectItem value={department.short} key={department.short}>
+                                        <SelectItem value={department.name} key={department.short}>
                                             {department.name}
                                         </SelectItem>
                                     ))}
