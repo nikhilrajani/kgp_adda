@@ -65,8 +65,8 @@ export const halls = [
   { name: "Sir Ashutosh Mukherjee Hall of Residence", short: "SAM" },
   { name: "Sister Nivedita Hall of Residence", short: "SNVH" },
   { name: "Vidyasagar Hall of Residence", short: "VS" },
-  { name: "Vikram Sarabhai Residential Complex-1 Hall of Residence", short: "VSRC-1" },
-  { name: "Vikram Sarabhai Residential Complex-2 Hall of Residence", short: "VSRC-2" },
+  { name: "Vikram Sarabhai Residential Complex-1", short: "VSRC-1" },
+  { name: "Vikram Sarabhai Residential Complex-2", short: "VSRC-2" },
   { name: "Zakir Hussain Hall of Residence", short: "ZH" },
 ];
 
