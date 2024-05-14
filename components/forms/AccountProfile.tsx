@@ -202,12 +202,11 @@ const AccountProfile = ({user,btnTitle}:Props) => {
                         </FormItem>
                     )}
                 />
-                <div className="flex flex-row w-full">
                     <FormField
                         control={form.control}
                         name="hall"
                         render={({ field }) => (
-                            <FormItem className="flex flex-col gap-3 w-full mx-2">
+                            <FormItem className="flex flex-col gap-3 w-full">
                             <FormLabel className="text-base-semibold text-light-2">
                                 Hall of Residence
                             </FormLabel>
@@ -229,7 +228,7 @@ const AccountProfile = ({user,btnTitle}:Props) => {
                             </FormItem>
                         )}
                     />
-                    <FormField
+                <FormField
                         control={form.control}
                         name="department"
                         render={({ field }) => (
@@ -240,7 +239,7 @@ const AccountProfile = ({user,btnTitle}:Props) => {
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                     <SelectTrigger className="account-form_input">
-                                        <SelectValue placeholder="Select your Department" />
+                                        <SelectValue placeholder="Select your Deparment" />
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent className="account-form_input">
@@ -255,7 +254,6 @@ const AccountProfile = ({user,btnTitle}:Props) => {
                             </FormItem>
                         )}
                     />
-                </div>
                 <FormField
                     control={form.control}
                     name="bio"
